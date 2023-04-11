@@ -34685,7 +34685,7 @@ if(o==null)o=p.cy
 s=n*5
 r=t.p
 return new A.mj(o,A.kd(q,A.mk(A.a([A.mk(A.a([A.eb(A.a([A.kd(q,A.qb(A.eU(A.qt(new A.iG("assets/titre.png",q,q)),q,q)),q,q,s,q,q,n),A.mk(A.a([A.kd(q,A.qb(A.eU(A.qt(new A.iG("assets/score.png",q,q)),q,q)),q,q,n,q,q,s),this.Sh()],r),B.R,B.aq,B.a0),A.mk(A.a([new A.d4(0,q),new A.d4(1,q),new A.d4(2,q),new A.d4(3,q),new A.d4(4,q),new A.d4(5,q)],r),B.R,B.aq,B.a0)],r),B.R,B.ar,B.aQ),A.eb(A.a([new A.d4(6,q),new A.d4(7,q),new A.d4(8,q),new A.d4(9,q),new A.d4(10,q),new A.d4(11,q),new A.d4(12,q)],r),B.R,B.ar,B.aQ)],r),B.R,B.aq,B.a0),this.Sl(),this.Si(a),A.fm(q,0,q)],r),B.bk,B.Cf,B.a0),q,q,q,q,B.xY,q),q)},
-Si(a){var s,r,q,p,o,n,m=null,l=A.Vw(a,t.jT),k=t.w,j=a.O(k).f.a.a/a.O(k).f.a.b<0.657?(a.O(k).f.a.a-20)/6:(0.657*a.O(k).f.a.b-20)/6
+Si(a){var s,r,q,p,o,n,m=null,l=A.Vw(a,t.jT),k=t.w,j=a.O(k).f.a.a/a.O(k).f.a.b<0.657?(a.O(k).f.a.a-20)/5:(0.657*a.O(k).f.a.b-20)/5
 k=A.a0(a).p3.e
 k=A.abw(A.qb(A.ua("Roll",k==null?m:k.mi(A.a0(a).ax.b,50,B.aB),m,m)),new A.a12(l),m)
 s=A.fm(m,m,20)
