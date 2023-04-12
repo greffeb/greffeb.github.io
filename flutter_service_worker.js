@@ -24,7 +24,7 @@ const RESOURCES = {
 "assets/assets/triangleGrey.png": "28f41062992dc1feb404d83748b1d1c8",
 "assets/FontManifest.json": "cf3c681641169319e61b61bd0277378f",
 "assets/fonts/MaterialIcons-Regular.otf": "e7069dfd19b331be16bed984668fe080",
-"assets/NOTICES": "e907e4e55d85f2146ad9348ef8131f4e",
+"assets/NOTICES": "0db2121fb5cab2f6f83c4adfbd0f7a3e",
 "assets/packages/material_design_icons_flutter/lib/fonts/materialdesignicons-webfont.ttf": "174c02fc4609e8fc4389f5d21f16a296",
 "canvaskit/canvaskit.js": "97937cb4c2c2073c968525a3e08c86a3",
 "canvaskit/canvaskit.wasm": "3de12d898ec208a5f31362cc00f09b9e",
@@ -36,9 +36,9 @@ const RESOURCES = {
 "icons/Icon-512.png": "6d9c82f393259a19f1313e2935ee9239",
 "icons/Icon-maskable-192.png": "ba033bd1d2cbf6046af4d22a2c89bdc0",
 "icons/Icon-maskable-512.png": "6d9c82f393259a19f1313e2935ee9239",
-"index.html": "0359c8c0408f86e36eb3b951276a2ac7",
-"/": "0359c8c0408f86e36eb3b951276a2ac7",
-"main.dart.js": "8623fd4a95b25e4ddcbe9eeb3175fd44",
+"index.html": "fcc81ea5809f19bc0c5a56bbc19aa314",
+"/": "fcc81ea5809f19bc0c5a56bbc19aa314",
+"main.dart.js": "bf7441ec114acdac7eba3672c34437b7",
 "manifest.json": "6ee9a1e88394dfb5e97debe15cc3b6ca",
 "version.json": "fa83b912c3d70a7567e3be98264c1f77"
 };
