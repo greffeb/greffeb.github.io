@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .header {
+            padding: 20px;
+            border-bottom: 2px solid #00ff00;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #00cc00;
+        }
+
+        .terminal {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .output {
+            flex: 1;
+            margin-bottom: 20px;
+        }
+
+        .line {
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .prompt {
+            color: #00ff00;
+        }
+
+        .error {
+            color: #ff0000;
+        }
+
+        .warning {
+            color: #ffaa00;
+        }
+
+        .success {
+            color: #00ffff;
+        }
+
+        .input-line {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-line .prompt {
+            margin-right: 10px;
+        }
+
+        #command-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background: #00ff00;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .ascii-art {
+            color: #00ff00;
+            white-space: pre;
+            font-size: 12px;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 18px;
+            }
+            .ascii-art {
+                font-size: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ERROR 404: PAGE NOT FOUND</h1>
+        <p>Initiating recovery protocol...</p>
+    </div>
+
+    <div class="terminal">
+        <div class="output" id="output">
+            <div class="line">System boot sequence initiated...</div>
+            <div class="line">Loading kernel modules... [OK]</div>
+            <div class="line">Mounting filesystems... [OK]</div>
+            <div class="line warning">WARNING: Page descriptor not found in memory map</div>
+            <div class="line">Attempting recovery through terminal interface...</div>
+            <div class="line"></div>
+            <div class="line">Type 'help' for available commands</div>
+            <div class="line"></div>
+        </div>
+
+        <div class="input-line">
+            <span class="prompt">root@404:~#</span>
+            <input type="text" id="command-input" autofocus autocomplete="off">
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById('command-input');
+        const output = document.getElementById('output');
+        const commandHistory = [];
+        let historyIndex = -1;
+
+        const flavorTexts = [
+            "Error 404: This page went to buy cigarettes and never came back",
+            "The page you're looking for is in another castle",
+            "404: I looked everywhere. Even under the couch cushions",
+            "This page has been optimized out by the compiler",
+            "Segmentation fault (core dumped)",
+            "Task failed successfully",
+            "NULL pointer exception: page not found",
+            "The requested page is currently on vacation",
+            "Page not found. Did you check /dev/null?",
+            "ENOENT: No such file or directory"
+        ];
+
+        const asciiArt = `
+    _____ _____ _____ 
+   /  |  |  |  |  |  |
+  |_____|_____|_____|
+   4  0  4     E R R O R
+`;
+
+        const commands = {
+            help: () => {
+                return `Available commands:
+  help        - Show this help message
+  ls          - List directory contents
+  cat         - Read file contents
+  whoami      - Display current user
+  ping        - Ping the server
+  hack        - Attempt to hack the mainframe
+  status      - Check system status
+  locate      - Try to locate the missing page
+  reboot      - Reboot the system
+  clear       - Clear the terminal
+  home        - Return to homepage
+  fortune     - Get a random message
+  brew coffee - Attempt to brew coffee`;
+            },
+
+            ls: () => {
+                const files = [
+                    'drwxr-xr-x  2 root root 4096 Jan 23 error.log',
+                    '-rw-r--r--  1 root root    0 Jan 23 page_not_found.txt',
+                    '-rw-r--r--  1 root root  666 Jan 23 hope.dat',
+                    'drwxr-xr-x  2 root root 4096 Jan 23 void/',
+                    '-rwxr-xr-x  1 root root 1337 Jan 23 recover.sh'
+                ];
+                return files.join('\n');
+            },
+
+            cat: (args) => {
+                const file = args[0];
+                if (!file) return 'cat: missing file operand';
+                
+                const files = {
+                    'error.log': '[ERROR] Failed to load page: ENOENT\n[ERROR] Retrying... Failed\n[ERROR] Cache lookup failed\n[ERROR] All hope is lost',
+                    'page_not_found.txt': 'The page you requested has ceased to exist.\nIt may have never existed.\nReality is uncertain.',
+                    'hope.dat': 'H̷̡͉̺̀Ọ̷̧̳͊P̶̨̼̈́͜Ē̷͔ ̷̰̻̐N̶͕̏Ȯ̶̰̕T̸͓͠ ̴̨̙̊F̵̰͋O̴͎̿Ủ̵̳̚N̷̝̅D̶̰̈́',
+                    'recover.sh': '#!/bin/bash\n# Page recovery script\necho "Recovering..."\nsleep 1\necho "Still recovering..."\nsleep 1\necho "Just kidding, page is gone forever"'
+                };
+                
+                return files[file] || `cat: ${file}: No such file or directory`;
+            },
+
+            whoami: () => {
+                return 'root\n(You are the master of this broken domain)';
+            },
+
+            ping: (args) => {
+                const target = args[0] || 'page.notfound';
+                return `PING ${target} (127.0.0.1): 56 data bytes
+Request timeout for icmp_seq 0
+Request timeout for icmp_seq 1
+Request timeout for icmp_seq 2
+--- ${target} ping statistics ---
+3 packets transmitted, 0 packets received, 100.0% packet loss`;
+            },
+
+            hack: () => {
+                const messages = [
+                    'Initiating brute force attack...\nAccessing mainframe...\nBypassing firewall...\nERROR: Page still not found',
+                    'Running exploit...\n[████████████] 100%\nRoot access granted!\nSearching for page...\nPage.exe has stopped working',
+                    'Injecting SQL...\n\'; DROP TABLE pages; --\nERROR: Cannot drop table that doesn\'t exist',
+                    'Deploying neural network...\nTraining AI model...\nAI: "I have no idea where your page is"'
+                ];
+                return messages[Math.floor(Math.random() * messages.length)];
+            },
+
+            status: () => {
+                return `System Status:
+  CPU Usage: ${Math.floor(Math.random() * 30 + 5)}%
+  Memory: ${Math.floor(Math.random() * 4000 + 1000)}MB / 8192MB
+  Disk I/O: PANIC
+  Network: UNSTABLE
+  Page Status: MISSING
+  Hope Level: ${Math.floor(Math.random() * 10)}%
+  Coffee Level: CRITICAL`;
+            },
+
+            locate: () => {
+                return `Searching for missing page...
+Checking /var/www/html... Not found
+Checking /home/user... Not found
+Checking /tmp... Not found
+Checking /dev/null... Found something, but it's empty
+Checking alternate dimensions... Access denied
+The page has successfully evaded detection`;
+            },
+
+            reboot: () => {
+                setTimeout(() => {
+                    output.innerHTML = '';
+                    addLine('System rebooting...');
+                    setTimeout(() => addLine('...'), 500);
+                    setTimeout(() => addLine('Still 404.'), 1000);
+                    setTimeout(() => addLine(''), 1500);
+                    setTimeout(() => addLine('Type \'help\' for available commands'), 1500);
+                }, 100);
+                return 'Initiating reboot sequence...';
+            },
+
+            clear: () => {
+                output.innerHTML = '';
+                return null;
+            },
+
+            home: () => {
+                window.location.href = '/';
+                return 'Redirecting to homepage...';
+            },
+
+            fortune: () => {
+                return flavorTexts[Math.floor(Math.random() * flavorTexts.length)];
+            },
+
+            'brew coffee': () => {
+                return `Brewing coffee...
+[▓▓▓▓▓▓▓▓▓▓] 100%
+ERROR 418: I'm a teapot
+Cannot brew coffee, I'm a 404 page`;
+            },
+
+            sudo: (args) => {
+                const cmd = args.join(' ');
+                if (cmd === 'rm -rf /') {
+                    return 'Nice try. The page is already gone, you can\'t make it worse.';
+                }
+                return `[sudo] password for root: 
+Sorry, you cannot use sudo to fix this.`;
+            },
+
+            exit: () => {
+                return 'There is no escape. Type \'home\' to return to the homepage.';
+            },
+
+            '404': () => {
+                return asciiArt;
+            }
+        };
+
+        function addLine(text, className = '') {
+            const line = document.createElement('div');
+            line.className = 'line' + (className ? ' ' + className : '');
+            line.textContent = text;
+            output.appendChild(line);
+            output.scrollTop = output.scrollHeight;
+        }
+
+        function processCommand(cmd) {
+            const parts = cmd.trim().split(' ');
+            const command = parts[0].toLowerCase();
+            const args = parts.slice(1);
+
+            addLine(`root@404:~# ${cmd}`, 'prompt');
+
+            if (!command) return;
+
+            if (commands[command]) {
+                const result = commands[command](args);
+                if (result) {
+                    result.split('\n').forEach(line => addLine(line));
+                }
+            } else if (command === 'brew' && args[0] === 'coffee') {
+                const result = commands['brew coffee']();
+                result.split('\n').forEach(line => addLine(line));
+            } else {
+                const errors = [
+                    `bash: ${command}: command not found`,
+                    `${command}: No such file or directory`,
+                    `Error: '${command}' is not recognized as an internal or external command`,
+                    `Segmentation fault (core dumped)`,
+                    `${command}: permission denied`,
+                    `Fatal error: ${command} has caused a general protection fault`
+                ];
+                addLine(errors[Math.floor(Math.random() * errors.length)], 'error');
+            }
+
+            addLine('');
+        }
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const cmd = input.value;
+                if (cmd.trim()) {
+                    commandHistory.unshift(cmd);
+                    historyIndex = -1;
+                    processCommand(cmd);
+                }
+                input.value = '';
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (historyIndex < commandHistory.length - 1) {
+                    historyIndex++;
+                    input.value = commandHistory[historyIndex];
+                }
+            } else if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    input.value = commandHistory[historyIndex];
+                } else {
+                    historyIndex = -1;
+                    input.value = '';
+                }
+            }
+        });
+
+        // Keep input focused
+        document.addEventListener('click', () => input.focus());
+        input.focus();
+    </script>
+</body>
+</html>
