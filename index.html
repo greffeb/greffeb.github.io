@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benjamin Greffe – Projects</title>
+  <style>
+    /* Base resets & theming */
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #0b0b0b;
+      color: #fff;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", "Noto Sans", Arial, sans-serif;
+      /* Top padding per request */
+      padding-top: 40px;
+    }
+
+    /* Gallery grid: responsive, centered, with gaps */
+    .gallery {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px 40px; /* side padding + a bit at bottom */
+      justify-items: center; /* ensures cards align nicely when narrower than the cell */
+    }
+
+    /* Card: square, max 400px, clickable */
+    .card {
+      display: block;
+      position: relative;
+      width: 100%;
+      max-width: 400px;     /* Do not exceed 400px */
+      aspect-ratio: 1 / 1;  /* Keep it perfectly square */
+      border-radius: 22px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      background: #222;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.04);
+      opacity: 0.95;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+    }
+
+    /* Make the image fill the square */
+    .card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Subtle bottom gradient for text readability */
+    .card::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 45%;
+      background: linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0));
+      pointer-events: none;
+    }
+
+    /* Label over the image */
+    .label {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    /* Optional: make links open in new tab */
+    .card[target="_blank"] { cursor: pointer; }
+  </style>
+</head>
+<body>
+  <!-- Title removed as requested -->
+
+  <div class="gallery">
+    <!-- ColorBox -->
+    <a class="card" href="https://greffeb.github.io/colorbox/" target="_blank" rel="noopener noreferrer">
+      <img src="https://raw.githubusercontent.com/greffeb/colorbox/refs/heads/main/icon-512.png" alt="ColorBox Icon" />
+      <div class="label">ColorBox</div>
+    </a>
+
+    <!-- Detrak -->
+    <a class="card" href="https://greffeb.github.io/detrak/" target="_blank" rel="noopener noreferrer">
+      <img src="https://raw.githubusercontent.com/greffeb/detrak/refs/heads/main/icons/Icon-512.png" alt="Detrak Icon" />
+      <div class="label">Detrak</div>
+    </a>
+  </div>
+</body>
+</html>
